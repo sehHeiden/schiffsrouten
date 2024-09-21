@@ -1,5 +1,7 @@
-shapely
-geopandas
-requests
+shapely==2.0.6
+geopandas==1.0.1
+pandas==2.2.3
+requests==2.32.3
+tqdm==4.66.5
 
 ruff
