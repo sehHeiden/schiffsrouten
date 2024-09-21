@@ -1,3 +1,5 @@
+"""Load the Raster selected via json file."""
+
 import json
 from datetime import datetime
 from pathlib import Path
@@ -34,10 +36,12 @@ def get_keycloak(username: str, password: str) -> str:
         r = requests.post(
             "https://identity.dataspace.copernicus.eu/auth/realms/CDSE/protocol/openid-connect/token",
             data=data,
+            timeout=10,
         )
         r.raise_for_status()
     except Exception:
-        raise Exception(f"Keycloak token creation failed. Reponse from the server was: {r.json()}")
+        error_txt = f"Keycloak token creation failed. Response from the server was: {r.json()}"
+        raise AttributeError(error_txt) from None
     return r.json()["access_token"]
 
 add_attributes = ""
